@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <style>
+      body{
+        font-family: Arial, Sans-Serif;
+        height: 80vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        background-color: grey;
+      }
+      #container{
+        background-color: white;
+        width: 200px;
+        border-radius: 10px;
+        overflow: hidden;
+      }
+      #month_name{
+        background-color: red;
+        color: white;
+        margin: 0;
+        padding: 10px;
+        font-size: 1rem;
+        font-weight: bold;
+      }
+      #day_name{
+        color: lightgrey;
+      }
+      #day_number{
+        font-weight: bold;
+        font-size: 4rem;
+        margin: 0;
+      }
+      #year{
+        color: lightgrey;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <p id="month_name">Month</p>
+      <p id="day_name">Day</p>
+      <p id="day_number">20</p>
+      <p id="year">Year</p>
+    </div>
+    <script>
+      let monthEl = document.getElementById('month_name');
+      let dayEl = document.getElementById('day_name');
+      let numberEl = document.getElementById('day_number');
+      let yearEl = document.getElementById('year');
+      const month = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+      const day = ['Month','Tuesday','Wednesday','Thursday','Friday',"Saturday",'Sunday'];
+      const dayNumber = [1,2,3,4,5,6,7,8,9,10,11,13,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31]
+      let dateEl = new Date();
+     monthEl.innerText = month[dateEl.getMonth()];
+     dayEl.innerText = day[dateEl.getDay()];
+     numberEl.innerText = dateEl.getDate();
+     yearEl.innerText = dateEl.getFullYear()
+     
+    </script>
+  </body>
+</html>

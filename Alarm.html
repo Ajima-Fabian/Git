@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Alarm System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .container {
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ddda;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        input{
+            padding: 10px;
+            margin: 10px;
+            font-size: 16px;
+        }
+        button{
+            padding: 10px;
+            margin: 10px;
+            font-size: 16px;
+            background-color: indianred;
+            border-radius: 10px;
+            border: transparent;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>JavaScript Alarm System</h2>
+        <label for="alarm-time">Set Alarm Time:</label>
+        <input type="time" id="alarm-time">
+        <button id="setAlarm">Set Alarm</button>
+        <p id="status"></p>
+        <audio id="alarm-sound" src="alarm.mp3"></audio>
+    </div>
+    <script>
+      let alarmTime;
+      let alarmTimeout;
+      let alarmBtn = document.getElementById('setAlarm');
+
+     alarmBtn.onclick = function () {
+    const input = document.getElementById("alarm-time").value;
+    
+    if (!input) {
+        alert("Please select a time for the alarm.");
+        return;
+    }
+
+    const now = new Date();
+    const [hours, minutes] = input.split(":").map(Number);
+    const alarmDate = new Date(now.getFullYear(), now.getMonth(), now.getDate(), hours, minutes, 0);
+
+    if (alarmDate < now) {
+        alert("Selected time has already passed today!");
+        return;
+    }
+
+    alarmTime = alarmDate.getTime();
+    document.getElementById("status").textContent = `Alarm set for ${input}`;
+
+    checkAlarm();
+}
+
+      function checkAlarm() {
+    clearInterval(alarmTimeout);
+    
+    alarmTimeout = setInterval(() => {
+        const now = new Date().getTime();
+        
+        if (now >= alarmTime) {
+            triggerAlarm();
+            clearInterval(alarmTimeout);
+        }
+    }, 1000);
+}
+
+      function triggerAlarm() {
+    document.getElementById("status").textContent = "⏰ Alarm Ringing!";
+    const alarmSound = document.getElementById("alarm-sound");
+    alarmSound.play();
+    alert("⏰ Alarm is ringing!");
+}
+    </script>
+</body>
+</html>

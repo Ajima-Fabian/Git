@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Temperature converter</title>
+    <style>
+      body{
+        height: 80vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        line-height: 35px;
+        background-color: slateblue;
+      }
+      .container{
+        background-color: lightgrey;
+        height: 280px;
+        width: 250px;
+        border-radius: 10px;
+        /* padding: 20px; */
+      }
+      h2{
+        color: darkblue;
+      }
+      .inputBox{
+        height: 30px;
+        margin: 5px;
+        border: none;
+        border-radius: 10px;
+        outline: none;
+      }
+      
+      #btn{
+        padding: 7px 15px;
+        margin: 0;
+        font-size: 15px;
+        border: none;
+        background-color: violet;
+        border-radius: 10px;
+        color: white;
+      }
+      p{
+        margin: 0;
+      }
+      #btn:hover{
+        background-color: grey;
+      }
+      #btn:active{
+        background-color: red;
+        }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>My Temperature <br> Converter</h2>
+      <input type="number" class="inputBox"> <br>
+      <input type="radio" class="toFahrenheit" name="unit">
+      <label for="toFahrenheit">Convert to Fahrenheit</label> 
+      <br>
+      <input type="radio" class="toCelcius" name="unit">
+      <label for="toCelcius">Convert to Celcius</label>
+      <br>
+      <button id="btn">Convert</button>
+      <p id="status"></p>
+    </div>
+    
+    <script>
+      const inputBox = document.querySelector('.inputBox');
+      const toFahrenheit = document.querySelector('.toFahrenheit');
+      const toCelcius = document.querySelector('.toCelcius');
+      const btn = document.querySelector('#btn');
+      const message = document.querySelector('#status');
+      let temp;
+      
+      btn.addEventListener("click",()=>{
+        if(toFahrenheit.checked){
+          temp = Number(inputBox.value);
+          temp = (temp * 9 / 5 + 32);
+          message.innerText = temp.toFixed(1) + '°F';
+          message.style.color = 'black'
+        } else if(toCelcius.checked){
+          temp = Number(inputBox.value);
+          temp = temp - 32 * (5/9);
+          message.innerText = temp.toFixed(1) + '°C';
+          message.style.color = 'black'
+        } else{
+          message.innerText = 'Select a unit!';
+          message.style.color = 'red';
+        }
+      })
+    </script>
+  </body>
+</html>

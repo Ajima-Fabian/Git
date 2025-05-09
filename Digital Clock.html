@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Live Clock</title>
+    <style>
+      body{
+        display: flex;
+        height: 100vh;
+        justify-content: center;
+        align-items: center;
+      }
+    </style>
+</head>
+<body>
+    <h1 id="clock"></h1>
+
+    <script>
+           function updateClock() {
+            const date = new Date();
+            const time = date.toLocaleTimeString();
+            document.getElementById("clock").textContent = time;
+                   }
+                   
+                   setInterval(updateClock, 1000);
+                   updateClock();
+                   const date = new Date();
+            const time = date.toLocaleTimeString(); // Format: HH:MM:SS
+            document.getElementById("clock").textContent = time;
+            
+    </script>
+    
+</body>
+</html>

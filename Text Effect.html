@@ -1,0 +1,45 @@
+ <!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <style>
+      body{
+        height: 100vh;
+        font-family: Comic Sans MS;
+      }
+      #container{
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        position: relative;
+        top: 40%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <!-- <h1>Ajima Fabian</h1> -->
+    </div>
+    <script>
+      const containerEl = document.getElementById('container');
+      const number = ['One', 'Two','Three','Four','Five','Six','Seven','Eight','Nine','Ten']
+      let numbersIndex = 0;
+      let characterIndex = 0;
+      
+      function updateNumber(){
+        characterIndex++;
+        containerEl.innerText = 'This is number ' + number[numbersIndex].slice(0,characterIndex);
+        
+        
+        if(characterIndex === number[numbersIndex].length){
+          numbersIndex++;
+          characterIndex = 0;
+        }
+        
+        setTimeout(updateNumber,500)
+      }
+      updateNumber()
+    </script>
+  </body>
+</html>
+  
